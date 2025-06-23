@@ -1,0 +1,112 @@
+# CS2 Smoke Overlay with Faceit Integration
+
+A Counter-Strike 2 overlay application that displays smoke lineups and Faceit match information in real-time.
+
+## Features
+
+- **Smoke Lineups**: Interactive database of smoke grenades organized by map and site
+- **Faceit Integration**: Real-time match information with player levels and team rosters
+- **Game Integration**: Automatic map detection using CS2 Game State Integration
+- **Fullscreen Compatible**: Works in both windowed and fullscreen modes
+- **Global Hotkeys**: Control overlay without alt-tabbing from game
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/shadiflo/cs2overlay.git
+cd cs2overlay
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Copy the CS2 config file to your CS2 installation:
+```
+Copy gamestate_integration_cs2_overlay.cfg to:
+Steam/steamapps/common/Counter-Strike 2/game/csgo/cfg/
+```
+
+4. Start the overlay:
+```bash
+npm start
+```
+
+## Usage
+
+### Controls
+- **F1** - Toggle overlay
+- **Insert** - Alternative toggle
+- **ESC** - Close overlay panels
+
+### Setup Faceit Integration
+1. Press F1 to open overlay
+2. Go to Settings tab
+3. Enter your Faceit username
+4. Optionally add Faceit API key for enhanced features
+
+## CS2 Settings
+
+For best compatibility, set CS2 display mode to "Fullscreen Windowed":
+- CS2 Settings → Video → Display Mode → Fullscreen Windowed
+
+## File Structure
+
+- `main.js` - Main Electron process
+- `overlay.html` - UI structure
+- `overlay.js` - Application logic and Faceit API integration
+- `preload.js` - Electron security bridge
+- `styles.css` - Styling
+- `gamestate_integration_cs2_overlay.cfg` - CS2 integration config
+
+## Adding Smoke Lineups
+
+Edit the `loadSmokeData()` function in `overlay.js` to add new smoke lineups:
+
+```javascript
+dust2: {
+    'a-site': [
+        {
+            name: 'Smoke Name',
+            description: 'Brief description',
+            fullDescription: 'Detailed throwing instructions'
+        }
+    ]
+}
+```
+
+## Troubleshooting
+
+**Overlay not appearing:**
+- Check CS2 display mode (try Fullscreen Windowed)
+- Verify config file is in correct CS2 folder
+- Use F2 for force show
+
+**Mouse not working:**
+- Press F2 instead of F1
+- Use ESC to close panels
+- Press F3 for emergency hide
+
+**Faceit not loading:**
+- Check username spelling in Settings
+- Add API key for better reliability
+- Ensure you have recent CS2 matches on Faceit
+
+## Development
+
+Run in development mode:
+```bash
+npm start -- --dev
+```
+
+## Requirements
+
+- Node.js v16 or higher
+- Counter-Strike 2
+- Windows (recommended)
+
+## License
+
+MIT License
