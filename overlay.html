@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Smoke Overlay</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="overlay-container">
+        <!-- Toggle button to show/hide overlay -->
+        <div id="toggle-btn" class="toggle-button">
+            <span>💨</span>
+        </div>
+
+        <!-- Main overlay panel -->
+        <div id="overlay-panel" class="overlay-panel hidden">
+            <div class="panel-header">
+                <h3>CS2 Smoke Overlay</h3>
+                <div class="connection-status">
+                    <div id="connection-indicator" class="status-dot disconnected"></div>
+                    <span id="connection-text">Disconnected</span>
+                </div>
+                <div class="map-info">
+                    <span id="current-map">Map: Unknown</span>
+                </div>
+                <button id="close-btn" class="close-btn">×</button>
+            </div>
+
+            <div class="panel-content">
+                <!-- Main tabs -->
+                <div class="main-tabs">
+                    <button class="main-tab-btn active" data-tab="smokes">Smokes</button>
+                    <button class="main-tab-btn" data-tab="match">Match Info</button>
+                    <button class="main-tab-btn" data-tab="settings">Settings</button>
+                </div>
+
+                <!-- Smokes tab content -->
+                <div id="smokes-tab" class="tab-content active">
+                    <div class="site-tabs">
+                        <button class="tab-btn active" data-site="a-site">A Site</button>
+                        <button class="tab-btn" data-site="b-site">B Site</button>
+                        <button class="tab-btn" data-site="mid">Mid</button>
+                        <button class="tab-btn" data-site="misc">Misc</button>
+                    </div>
+
+                    <div class="smoke-list" id="smoke-list">
+                        <!-- Smoke lineups will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Match Info tab content -->
+                <div id="match-tab" class="tab-content">
+                    <div class="match-controls">
+                        <button id="load-match-btn" class="load-match-btn">
+                            <span class="btn-icon">🎮</span>
+                            Load Faceit Match
+                        </button>
+                        <div class="api-status">
+                            <span id="api-status-text">Ready</span>
+                        </div>
+                    </div>
+
+                    <!-- Match information display -->
+                    <div id="match-info" class="match-info hidden">
+                        <div class="match-header">
+                            <h4 id="match-title">Match Information</h4>
+                            <span id="match-state" class="match-state"></span>
+                        </div>
+
+                        <div class="teams-container">
+                            <div class="team" id="team1">
+                                <h5 class="team-name">Team 1</h5>
+                                <div class="players-list" id="team1-players"></div>
+                            </div>
+
+                            <div class="vs-divider">VS</div>
+
+                            <div class="team" id="team2">
+                                <h5 class="team-name">Team 2</h5>
+                                <div class="players-list" id="team2-players"></div>
+                            </div>
+                        </div>
+
+                        <div class="match-details">
+                            <div class="detail-item">
+                                <span class="label">Map:</span>
+                                <span id="match-map">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Mode:</span>
+                                <span id="match-mode">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Room:</span>
+                                <a id="match-room-link" href="#" target="_blank">Open Match Room</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- No match state -->
+                    <div id="no-match" class="no-match">
+                        <div class="no-match-content">
+                            <span class="no-match-icon">🎯</span>
+                            <p>No active Faceit match found</p>
+                            <small>Click "Load Faceit Match" to check for active games</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings tab content -->
+                <div id="settings-tab" class="tab-content">
+                    <div class="settings-section">
+                        <h4>Faceit API Settings</h4>
+                        <div class="setting-item">
+                            <label for="faceit-username">Faceit Username:</label>
+                            <input type="text" id="faceit-username" placeholder="Your Faceit username">
+                        </div>
+                        <div class="setting-item">
+                            <label for="faceit-api-key">Faceit API Key (Optional):</label>
+                            <input type="password" id="faceit-api-key" placeholder="Your Faceit API key for enhanced features">
+                            <small>Get your API key from <a href="https://developers.faceit.com/" target="_blank">Faceit Developers</a></small>
+                        </div>
+                        <button id="save-settings-btn" class="save-btn">Save Settings</button>
+                    </div>
+
+                    <div class="settings-section">
+                        <h4>Overlay Settings</h4>
+                        <div class="setting-item">
+                            <label>
+                                <input type="checkbox" id="auto-load-match">
+                                Auto-load match info when joining server
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <label>
+                                <input type="checkbox" id="show-player-stats">
+                                Show player statistics
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Smoke preview overlay -->
+        <div id="smoke-preview" class="smoke-preview hidden">
+            <div class="preview-content">
+                <img id="preview-image" src="" alt="Smoke lineup">
+                <div class="preview-info">
+                    <h4 id="preview-title"></h4>
+                    <p id="preview-description"></p>
+                </div>
+                <button id="close-preview" class="close-btn">×</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="overlay.js"></script>
+</body>
+</html>
